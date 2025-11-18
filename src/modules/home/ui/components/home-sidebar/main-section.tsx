@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useClerk, useAuth, } from "@clerk/nextjs";
 
 import { 
 FlameIcon, 
@@ -34,6 +35,10 @@ const items = [
 ];
 
 export const MainSection = () => {
+
+    const clerk = useClerk();
+    const { isSignedIn }  = useAuth();
+
     return (
         <SidebarGroup>
             <SidebarGroupContent>
@@ -44,7 +49,12 @@ export const MainSection = () => {
                                 tooltip={item.title}
                                 asChild
                                 isActive={false}
-                                onClick={() => {}}
+                                onClick={(e) => {
+                                    if (!isSignedIn && item.auth) {
+                                        e.preventDefault();
+                                        return clerk.openSignIn();
+                                    }
+                                }}
                             >
                                 <Link href={item.url} className="flex items-centergap-4f">
                                     <item.icon/>
