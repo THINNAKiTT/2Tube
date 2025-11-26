@@ -1,19 +1,19 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 
-import { HomeNavbar } from "@/modules/home/ui/components/home-navbar";
-import { HomeSidebar } from "@/modules/home/ui/components/home-sidebar";
+import { StudioNavbar } from "../components/studio-navbar";
+import { StudioSidebar } from "../components/studio-sidebar";
 
-interface HomeLayoutProps {
+interface StudioLayoutProps {
   children: React.ReactNode;
 };
 
-export const HomeLayout = ({ children }: HomeLayoutProps) => {
+export const StudioLayout = ({ children }: StudioLayoutProps) => {
   return (
     <SidebarProvider>
         <div className="w-full">
-          <HomeNavbar />
+          <StudioNavbar />
             <div className="flex min-h-screen pt-[4rem]">
-              <HomeSidebar/>
+              <StudioSidebar/>
               <main className="flex overflow-y-auto">
                 {children}
               </main>
