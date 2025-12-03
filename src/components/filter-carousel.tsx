@@ -12,7 +12,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-import { set } from "date-fns";
 
 interface FilterCarouselProps {
     value?: string | null;
