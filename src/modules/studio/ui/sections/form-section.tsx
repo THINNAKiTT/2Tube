@@ -194,6 +194,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
         update.mutate(data);
     }
 
+    // Change before deploy
     const fullUrl = `${process.env.VERCEL_URL || "http://localhost:3000"}/videos/${videoId}`;
     const [isCopied, setIsCopied] = useState(false);
 
@@ -345,18 +346,17 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                                                         <DropdownMenuItem onClick={() => setThumbnailModalOpen(true)}>
                                                             <ImagePlusIcon className="size-4" />
                                                             Change
-                                                        </DropdownMenuItem>
-                                                        <DropdownMenuItem 
-                                                            onClick={() => setThumbnailGenerateModalOpen(true)}
-                                                            // Required credit card
-                                                            disabled={true}
-                                                        >
-                                                            <SparklesIcon className="size-4" />
-                                                            AI-generated
-                                                        </DropdownMenuItem>
+                                                        </DropdownMenuItem>                                           
                                                         <DropdownMenuItem onClick={() => restoreThumbnail.mutate({ id: videoId })}>
                                                             <RotateCcwIcon className="size-4" />
                                                             Restore
+                                                        </DropdownMenuItem>
+                                                        <DropdownMenuItem 
+                                                            onClick={() => setThumbnailGenerateModalOpen(true)}                                                           
+                                                            disabled={true} //// Required credit card
+                                                        >
+                                                            <SparklesIcon className="size-4" />
+                                                            AI-generated
                                                         </DropdownMenuItem>
                                                     </DropdownMenuContent>
                                                 </DropdownMenu>
