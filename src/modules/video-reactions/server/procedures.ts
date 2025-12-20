@@ -1,8 +1,8 @@
 import z from "zod";
+import { and, eq } from "drizzle-orm";
 
 import { db } from "@/db";
 import { videoReactions } from "@/db/schema";
-import { and, eq } from "drizzle-orm";
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 
 export const videoReactionsRouter = createTRPCRouter({
