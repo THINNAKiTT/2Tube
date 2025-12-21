@@ -1,8 +1,8 @@
 import z from "zod";
 
 import { db } from "@/db";
-import { videoViews } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
+import { videoViews } from "@/db/schema";
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 
 export const videoViewsRouter = createTRPCRouter({
