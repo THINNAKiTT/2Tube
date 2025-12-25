@@ -33,7 +33,7 @@ const  CommentsSectionSkeleton = () => {
     )
 }
 
-export const CommentsSectionSuspense = ({ videoId}: CommentsSectionProps) => {
+export const CommentsSectionSuspense = ({ videoId }: CommentsSectionProps) => {
     const [comments, query] = trpc.comments.getMany.useSuspenseInfiniteQuery({
         videoId,
         limit: DEFAULT_LIMIT 

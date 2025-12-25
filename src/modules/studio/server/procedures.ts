@@ -5,7 +5,6 @@ import { db } from "@/db";
 import { videos } from "@/db/schema";
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
-import { NOTFOUND } from "dns";
 
 export const studioRouter = createTRPCRouter({
     getOne: protectedProcedure.input(z.object({ id: z.string().uuid() }))
