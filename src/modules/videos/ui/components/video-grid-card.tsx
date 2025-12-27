@@ -1,16 +1,27 @@
 import Link from "next/link";
 import { VideoGetManyOutput } from "../../types";
-import { VideoThumbnail } from "./video-thumbnail";
 
 import { useMemo } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { UserAvatar } from "@/components/user-avatar";
+
 import { VideoMenu } from "./video-menu";
+import { VideoInfoSkeletion } from "../sections/suggestions-section";
+import { VideoThubnailSkeleton, VideoThumbnail } from "./video-thumbnail";
 
 interface VideoGridCardProps {
     data: VideoGetManyOutput["items"][number];
     onRemove?: () => void;
 };
+
+export const VideoGridCardSkeleton = () => {
+    return (
+        <div className="flex flex-col gap-2 w-full">
+            <VideoThubnailSkeleton />
+            <VideoInfoSkeletion />
+        </div>
+    )
+}
 
 export const VideoGridCard = ({
     data,

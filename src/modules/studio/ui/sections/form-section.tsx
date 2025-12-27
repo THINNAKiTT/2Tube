@@ -4,6 +4,7 @@ import { z } from "zod";
 import Link from "next/link";
 import { toast } from "sonner";
 import { trpc } from "@/trpc/client";
+import { APP_URL } from "@/constants";
 import { useForm } from "react-hook-form";
 import { Suspense, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -205,8 +206,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
         update.mutate(data);
     }
 
-    // Change before deploy
-    const fullUrl = `${process.env.VERCEL_URL || "http://localhost:3000"}/videos/${videoId}`;
+    const fullUrl = `${APP_URL || "http://localhost:3000"}/videos/${videoId}`;
     const [isCopied, setIsCopied] = useState(false);
 
     const onCopy = async () => {

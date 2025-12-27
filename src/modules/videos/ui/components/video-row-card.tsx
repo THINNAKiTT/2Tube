@@ -14,7 +14,7 @@ import { UserAvatar } from "@/components/user-avatar";
 import { UserInfo } from "@/modules/users/ui/components/user-info";
 
 import { VideoMenu } from "./video-menu";
-import { VideoThumbnail } from "./video-thumbnail";
+import { VideoThubnailSkeleton, VideoThumbnail } from "./video-thumbnail";
 import { VideoGetManyOutput } from "../../types"; 
 import { formatDistanceToNow } from "date-fns";
 
@@ -47,10 +47,37 @@ interface VideoRowCardProps extends VariantProps<typeof videoRowCardVariants> {
     onRemove?: () => void;
 };
 
-export const VideoRowCardSkeleton = () => {
+export const VideoRowCardSkeleton = ({ size }: VariantProps<typeof videoRowCardVariants>) => {
     return (
-        <div className="">
-            <Skeleton />
+        <div className={videoRowCardVariants({ size })}>
+            {/* Thumbnail */}
+            <div className={thumbnailVariants({ size })}>
+                <VideoThubnailSkeleton />
+            </div>
+            {/* Info */}
+            <div className="flex-1 min-w-0">
+                <div className="flex justify-between gap-x-2">
+                    <div className="flex-1 min-w-0">
+                        <Skeleton 
+                            className={cn("h-5 w-[40%", size === "compact" && "h-4 w-[40%]")}
+                        />
+                        {size === "default" && (
+                            <>
+                                <Skeleton className="h-4 w-[20%] mt-1"/>
+                                <div className="flex items-center gap-2 my-1">
+                                    <Skeleton className="size-8 rounded-full"/>
+                                    <Skeleton className="h-4 w-24"/>
+                                </div>
+                            </>
+                        )}
+                        {size === "compact" &&  (
+                            <>
+                                <Skeleton className="h-4 w-[50%] mt-1" />
+                            </>
+                        )}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
@@ -91,45 +118,43 @@ export const VideoRowCard = ({
                             {data.title}
                         </h3>
                         {size === "default" && (
-                            <>
-                                <div className="flex items-center gap-2 mt-1">
-                                    <UserInfo size="sm" name={data.user.name} />
-                                </div>
-                                {/* <Tooltip>
-                                    <TooltipTrigger asChild>
-                                        <p className="text-xs text-muted-foreground w-fit line-clamp-2">
-                                            {data.description ?? "No description"}
-                                        </p>
-                                    </TooltipTrigger>
-                                    <TooltipContent
-                                        side="bottom"
-                                        align="center"
-                                        className="bg-black/70"
-                                    >
-                                        <p>From the video description</p>
-                                    </TooltipContent>
-                                </Tooltip> */}
-                            </>
-                        )}
-                        {size === "default" && (
-                            <p className="text-sm text-muted-foreground ">
+                            <p className="text-xs text-muted-foreground ">
                                 {compactViews} views • {compactDate}
                             </p>
                         )}
-                        
+                        {size === "default" && (
+                            <>
+                                <div className="flex items-center gap-2 my-4">
+                                    <UserAvatar imageUrl={data.user.imageUrl} name={data.user.name} size="sm"/>
+                                    <UserInfo size="sm" name={data.user.name} />
+                                </div>
+                            </>
+                        )}
+                         {size === "default" && (
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <p className="text-xs text-muted-foreground w-fit line-clamp-2 mt-2">
+                                        {data.description ?? "No description"}
+                                    </p>
+                                </TooltipTrigger>
+                                <TooltipContent
+                                    side="bottom"
+                                    align="center"
+                                    className="bg-black/70"
+                                >
+                                    <p>From the video description</p>
+                                </TooltipContent>
+                            </Tooltip>
+                         )}
+
                         {size === "compact" && (
                             <div>
-                                <UserInfo size="sm" name={data.user.name} className="flex items-center gap-2 mt-1"/>
-                                <p className="text-sm text-muted-foreground">
+                                <UserInfo size="sm" name={data.user.name} className="flex items-center gap-2 my-1"/>
+                                <p className="text-xs text-muted-foreground">
                                     {compactViews} views • {compactDate}
                                 </p>
                             </div>
                         )}
-                        {/* {size === "compact" && (
-                            <p className="text-sm text-muted-foreground ">
-                                {data.viewCount} views • {compactDate}
-                            </p>
-                        )} */}
                     </Link>
                     <div className="flex-none">
                         <VideoMenu 
