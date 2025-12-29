@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useClerk, useAuth, } from "@clerk/nextjs";
-
+import { usePathname } from "next/navigation";
 
 import { 
 HistoryIcon,
@@ -20,7 +20,7 @@ SidebarMenuItem } from '@/components/ui/sidebar';
 const items = [
     {
         title: "History",
-        url: "/playlists/history",
+        url: "/feed/history",
         icon: HistoryIcon,
         auth: true,
     },
@@ -39,9 +39,9 @@ const items = [
 ];
 
 export const PersonalSection = () => {
-
     const clerk = useClerk();
     const { isSignedIn }  = useAuth();
+    const pathname = usePathname();
 
     return (
         <SidebarGroup>
@@ -53,7 +53,7 @@ export const PersonalSection = () => {
                             <SidebarMenuButton
                                 tooltip={item.title}
                                 asChild
-                                isActive={false}
+                                isActive={pathname === item.url}
                                 onClick={(e) => {
                                     if (!isSignedIn && item.auth) {
                                         e.preventDefault();

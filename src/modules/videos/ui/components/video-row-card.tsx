@@ -168,3 +168,74 @@ export const VideoRowCard = ({
         </div>
     )
 }
+export const VideoRowCardPlaylists = ({
+    data,
+    size,
+    onRemove,
+}: VideoRowCardProps) => {
+    const compactViews = useMemo(() => {
+        return Intl.NumberFormat("en", {
+            notation: "compact"
+        }).format(data.viewCount);
+    }, [data.viewCount]);
+
+    return (
+        <div className={videoRowCardVariants({ size })}>
+            <Link href={`/videos/${data.id}`} className={thumbnailVariants({ size })}>
+                <VideoThumbnail 
+                    imageUrl={data.thumbnailUrl}
+                    previewUrl={data.previewUrl}
+                    title={data.title}
+                    duration={data.duration}
+                />
+            </Link>
+
+            <div className="flex-1 min-w-0">
+                <div className="flex justify-between gap-x-2">
+                    <Link href={`videos/${data.id}`} className="flex-1 min-w-0">
+                        <h3
+                            className={cn(
+                                "font-medium line-clamp-2",
+                                size === "compact" ? "text-sm" :  "text-base",
+                            )}
+                        >
+                            {data.title}
+                        </h3>
+                        {size === "default" && (
+                            <>
+                                <div className="flex items-center gap-2 my-4">
+                                    <p className="text-xs text-muted-foreground">
+                                        {data.user.name} • {compactViews} views
+                                    </p>
+                                </div>
+                            </>
+                        )}
+                         {size === "default" && (
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <p className="text-xs text-muted-foreground w-fit line-clamp-2 mt-2">
+                                        {data.description ?? "No description"}
+                                    </p>
+                                </TooltipTrigger>
+                                <TooltipContent
+                                    side="bottom"
+                                    align="center"
+                                    className="bg-black/70"
+                                >
+                                    <p>From the video description</p>
+                                </TooltipContent>
+                            </Tooltip>
+                         )}
+                    </Link>
+                    <div className="flex-none">
+                        <VideoMenu 
+                        videoId={data.id} 
+                        onRemove={onRemove} 
+                        variant="ghost" 
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}

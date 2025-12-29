@@ -2,6 +2,7 @@ import { studioRouter } from '@/modules/studio/server/procedures';
 import { searchRouter } from '@/modules/search/server/procedures';
 import { videosRouter } from '@/modules/videos/server/procedures';
 import { commentsRouter } from '@/modules/comments/server/procedures';
+import { playlistsRouter } from '@/modules/playlists/server/procedures';
 import { categoriesRouter } from '@/modules/categories/server/procedures';
 import { videoViewsRouter } from '@/modules/video-views/server/procedures';
 import { suggestionsRouter } from '@/modules/suggestions/server/procedures';
@@ -16,8 +17,9 @@ export const appRouter = createTRPCRouter({
   videos: videosRouter,
   search: searchRouter,
   comments: commentsRouter,
-  categories: categoriesRouter,
+  playlists: playlistsRouter,
   videoViews: videoViewsRouter,
+  categories: categoriesRouter,
   suggestions: suggestionsRouter, 
   subscriptions: subscriptionsRouter,
   videoReactions: videoReactionsRouter,
