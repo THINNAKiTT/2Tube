@@ -32,7 +32,7 @@ const items = [
     },
     {
         title: "All Playlists",
-        url: "/playlists",
+        url: "/feed/playlists",
         icon: ListVideoIcon,
         auth: true,
     },
