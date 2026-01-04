@@ -4,9 +4,35 @@ import { and, desc, eq, getTableColumns, lt, or, sql } from "drizzle-orm";
 import { db } from "@/db";
 import { TRPCError } from "@trpc/server";
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
-import { playlists, playlistVideos, users, videoReactions, videos, videoViews } from "@/db/schema";
+import { playlists, playlistVideos, users, videoReactions, videos, videoViews, playlistUpdateSchema } from "@/db/schema";
 
 export const playlistsRouter = createTRPCRouter({
+    update: protectedProcedure
+        .input(playlistUpdateSchema)
+        .mutation(async ({ ctx, input }) => {
+            const { id: userId } = ctx.user;
+
+            if (!input.id) {
+                throw new TRPCError({ code: "BAD_REQUEST" });
+            }
+
+            const [updatedPlaylist] = await db
+                .update(playlists)
+                .set({
+                    name: input.name,
+                    updatedAt: new Date(),
+                })
+                .where(and(
+                    eq(playlists.id, input.id),
+                    eq(playlists.userId, userId)
+                ))
+                .returning();
+            if (!updatedPlaylist) {
+                throw new TRPCError({ code: "NOT_FOUND"});
+            }
+
+            return updatedPlaylist;
+        }),
     remove: protectedProcedure
         .input(z.object({ id: z.string().uuid() }))
         .mutation(async ({ input, ctx }) => {

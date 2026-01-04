@@ -48,6 +48,10 @@ export const playlists = pgTable("playlists", {
     updatedAt: timestamp("updated_at").defaultNow().notNull(),  
 });
 
+export const playlistInsertSchema = createInsertSchema(playlists);
+export const playlistSelectSchema = createSelectSchema(playlists);
+export const playlistUpdateSchema = createUpdateSchema(playlists);
+
 export const playlistRelations = relations(playlists, ({ one, many }) => ({
     user: one(users, {
         fields: [playlists.userId],

@@ -38,7 +38,7 @@ export const VideoGridCard = ({
 
     return (
         <div className="flex flex-col gap-2 w-full group">
-            <Link href={`/videos/${data.id}`}>
+            <Link prefetch href={`/videos/${data.id}`}>
                 <VideoThumbnail 
                     imageUrl={data.thumbnailUrl}
                     previewUrl={data.previewUrl}
@@ -47,19 +47,19 @@ export const VideoGridCard = ({
                 />
             </Link>
             <div className="flex gap-3">
-                <Link href={`/users/${data.user.id}`}>
+                <Link prefetch href={`/users/${data.user.id}`}>
                         <UserAvatar 
                             imageUrl={data.user.imageUrl}
                             name={data.user.name}
                         />
                 </Link>
                 <div className="min-w-0 flex-1">
-                    <Link href={`/videos/${data.id}`}>
+                    <Link prefetch href={`/videos/${data.id}`}>
                         <h3 className="font-medium line-clamp-1 lg:line-clamp-2 text-base break-words">
                             {data.title}
                         </h3>
                     </Link>
-                    <Link href={`/videos/${data.id}`}>
+                    <Link prefetch href={`/videos/${data.id}`}>
                         <p className="text-sm text-muted-foreground ">
                             {data.user.name} • {compactViews} views • {compactDate}
                         </p>
@@ -91,7 +91,7 @@ export const HomeVideoGridCard = ({
 
     return (
         <div className="flex flex-col gap-2 w-full group">
-            <Link href={`/videos/${data.id}`}>
+            <Link prefetch href={`/videos/${data.id}`}>
                 <VideoThumbnail 
                     imageUrl={data.thumbnailUrl}
                     previewUrl={data.previewUrl}
@@ -100,19 +100,19 @@ export const HomeVideoGridCard = ({
                 />
             </Link>
             <div className="flex gap-3">
-                <Link href={`/users/${data.user.id}`}>
+                <Link prefetch href={`/users/${data.user.id}`}>
                         <UserAvatar 
                             imageUrl={data.user.imageUrl}
                             name={data.user.name}
                         />
                 </Link>
                 <div className="min-w-0 flex-1">
-                    <Link href={`/videos/${data.id}`}>
+                    <Link prefetch href={`/videos/${data.id}`}>
                         <h3 className="font-medium line-clamp-1 lg:line-clamp-2 text-base break-words">
                             {data.title}
                         </h3>
                     </Link>
-                    <Link href={`/videos/${data.id}`}>
+                    <Link prefetch href={`/videos/${data.id}`}>
                         <UserInfo size="md" name={data.user.name} className="flex items-center gap-2 my-1"/>
                         <p className="text-sm text-muted-foreground ">
                             {compactViews} views • {compactDate}

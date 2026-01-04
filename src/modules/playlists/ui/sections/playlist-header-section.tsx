@@ -7,9 +7,8 @@ import { useRouter } from "next/navigation";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
-import { Trash2Icon } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { PlaylistMenu } from "../components/playlist-menu";
 
 interface PlaylistHeaderSectionProps {
     playlistId: string;
@@ -62,15 +61,10 @@ const PlaylistHeaderSectionSuspense = ({
                     Videos from the playlist
                 </p>
             </div>
-            <Button
-                variant="outline"
-                size="icon"
-                className="rounded-full"
-                onClick={() => remove.mutate({ id: playlistId })}
-                disabled={remove.isPending}
-            >
-                <Trash2Icon />
-            </Button>
+            <PlaylistMenu 
+                playlistId={playlistId}
+                variant="ghost"
+            />
         </div>
     );
 };
