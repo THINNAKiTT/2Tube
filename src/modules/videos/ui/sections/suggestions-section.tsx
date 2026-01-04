@@ -32,8 +32,10 @@ export const VideoInfoSkeletion = () => {
     return (
         <div className="flex gap-3">
             <Skeleton className="size-10 flex-shrink-0 rounded-full" />
-            <div className="flex items-center gap-2 mt-1">
-                <Skeleton className="h-5 w-[150%]"/>
+            <div className="flex flex-col flex-1 gap-2 mt-3">
+                <Skeleton className="h-4 w-[60%]"/>
+                <Skeleton className="h-3 w-[40%]"/>
+                <Skeleton className="h-3 w-[60%]"/>
             </div>
         </div>
     )

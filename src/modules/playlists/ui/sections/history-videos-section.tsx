@@ -32,7 +32,7 @@ const HistoryVideosSectionSkeleton = () => {
             </div>
             <div className="hidden flex-col gap-4 md:flex">       
                 {Array.from({ length: 18 }) .map((_, index) => (
-                        <VideoRowCardSkeleton key={index} size="default" />
+                        <VideoRowCardSkeleton key={index} size="playlist" />
                     ))
                 }
             </div>

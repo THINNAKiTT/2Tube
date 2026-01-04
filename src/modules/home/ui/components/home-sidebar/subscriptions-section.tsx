@@ -19,14 +19,14 @@ import { ListIcon } from "lucide-react";
 export const LoadingSkeleton = () => {
     return (  
         <>
-            {[1, 2, 3, 4].map((i) => {
+            {[1, 2, 3, 4].map((i) => (
                 <SidebarMenuItem key={i}>
                     <SidebarMenuButton disabled>
                         <Skeleton className="size-6 rounded-full shrink-0"/>
                         <Skeleton className="h-64 w-full"/>
                     </SidebarMenuButton>
                 </SidebarMenuItem>
-            })}
+            ))}
         </>
     );
 };
