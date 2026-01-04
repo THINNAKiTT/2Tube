@@ -3,7 +3,6 @@
 import { Suspense } from "react";
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
-import { useIsMobile } from '@/hooks/use-mobile';
 import { ErrorBoundary } from "react-error-boundary";
 
 import { InfiniteScroll } from '@/components/infinite-scroll';

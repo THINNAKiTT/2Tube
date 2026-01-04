@@ -66,7 +66,6 @@ export const VideoTopRow = ({ video }: VideoTopRowProps) => {
                     <VideoReactions 
                         videoId={video.id}
                         likes={video.likeCount}
-                        dislikes={video.dislikeCount}
                         viewerReaction={video.viewerReaction}
                     />
                     <VideoMenu videoId={video.id} variant="secondary"/>

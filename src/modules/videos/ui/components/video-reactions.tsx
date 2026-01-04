@@ -12,14 +12,12 @@ import { trpc } from "@/trpc/client";
 interface VideoReactionsProps {
     videoId: string;
     likes: number;
-    dislikes: number;
     viewerReaction: VideoGetOneOutput["viewerReaction"];
 }
 
 export const VideoReactions = ({
     videoId,
     likes,
-    dislikes,
     viewerReaction
 }: VideoReactionsProps) => {
     const clerk = useClerk();
@@ -72,7 +70,6 @@ export const VideoReactions = ({
                 className="rounded-l-none rounded-r-full pl-3"
             >
                 <ThumbsDownIcon className={cn("size-5", viewerReaction === "dislike" && "fill-black")}/>
-                {/* {dislikes} */}
             </Button>
         </div>
     );

@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 2TUBE
 
-## Getting Started
+**This is youtube clone developed with Next.js(App Router) and TypeScript.
+core features include a feed page, search, user channels, a subscription system, a studio for uploading/managing videos, and interactive elements (comments, reactions, views)**
 
-First, run the development server:
+### **Web architecture**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+	 - **Tool:** Next.js (App Router), React, TypeScript, Tailwind CSS, Bun-compatible tooling (project includes `bun`), Drizzle ORM for database schema, tRPC for API layer, UploadThing for uploads, Redis for caching/rate-limiting, Mux for video handling .
+	 - **Third party:** Next.js, Tailwind CSS, Drizzle ORM, tRPC, UploadThing, Redis, Mux, UI primitives (shadcn-style components), sonner/toaster for notifications. Project uses common packages for auth, file uploads and storage integrations.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **How to run**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+	 - install dependencies ( `npm`, `pnpm`, `yarn` or `bun`):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+		 ```bash
+		 npm install
+		 # or
+		 pnpm install
+		 # or
+		 yarn install
+		 # or (if using bun)
+		 bun install
+		 ```
 
-## Learn More
+	 - set environment (exam):
 
-To learn more about Next.js, take a look at the following resources:
+		 - `DATABASE_URL` — connect to database (Postgres, MySQL followed by Drizzle)
+		 - `NEXT_PUBLIC_*` / `SECRET_*` — external key like e.g. UploadThing, Mux, Redis URL
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+	 - run:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+		 ```bash
+		 npm run dev
+		 # or
+		 pnpm dev
+		 # or
+		 yarn dev
+		 # or
+		 bun dev
+		 ```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Main files:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/app/` — structure and routing
+- `src/components/` — components UI
+- `src/lib/` — utilities e.g. `mux.ts`, `redis.ts`, `uploadthing.ts`
+- `src/db/` — setting Drizzle and schema
+- `src/trpc/` — client/server and routers

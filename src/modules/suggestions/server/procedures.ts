@@ -5,7 +5,6 @@ import { db } from "@/db";
 import { users, videoReactions, videos, videoViews } from "@/db/schema";
 import { TRPCError } from "@trpc/server";
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
-import { formatDistanceToNow } from "date-fns";
 
 export const suggestionsRouter = createTRPCRouter({
     getMany: baseProcedure

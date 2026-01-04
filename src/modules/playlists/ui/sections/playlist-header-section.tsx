@@ -1,8 +1,6 @@
 "use client";
 
-import { toast } from "sonner";
 import { trpc } from "@/trpc/client";
-import { useRouter } from "next/navigation";
 
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
@@ -39,19 +37,6 @@ const PlaylistHeaderSectionSuspense = ({
     playlistId,
 }: PlaylistHeaderSectionProps) => {
     const [playlist] = trpc.playlists.getOne.useSuspenseQuery({ id: playlistId });
-
-    const router = useRouter();
-    const utils = trpc.useUtils();
-    const remove = trpc.playlists.remove.useMutation({
-        onSuccess: () => {
-            toast.success("Playlist removed");
-            utils.playlists.getMany.invalidate();
-            router.push("/feed/playlists")
-        },
-        onError: () => {
-            toast.error("Something went wrong");
-        }
-    });
 
     return (
         <div className="flex justify-between items-center">
